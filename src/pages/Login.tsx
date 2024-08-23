@@ -36,13 +36,13 @@ export const Login =() =>{
 				value={email}
 				placeholder="Digite o email"
 				onChange={handleEmailInput}
-			/>
+			/> <br />
 			<input
 				type="password"
 				value={password}
 				placeholder="Digite a password"
 				onChange={handlePasswordInput}
-			/>
+			/> <br />
 			<button onClick={handleLogin}>Logar</button>
 		</div>
 	)

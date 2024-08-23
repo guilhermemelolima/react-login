@@ -22,10 +22,10 @@ function App() {
 	<div>
 		<header>
 			<nav>
-				{auth.user && <Link to="/"> home</Link>}
-				{!auth.user && <Link to="/login"> login</Link>}
-				{!auth.user && <Link to="/register"> register</Link>}
-				{auth.user && <a href='' onClick={handleLogout}>Sair</a>}
+				{auth.userDTO && <Link to="/"> home</Link>}
+				{!auth.userDTO && <Link to="/login"> login</Link>}
+				{!auth.userDTO && <Link to="/register"> register</Link>}
+				{auth.userDTO && <a href='' onClick={handleLogout}>Sair</a>}
 			</nav>
 		</header>
 		<Routes>

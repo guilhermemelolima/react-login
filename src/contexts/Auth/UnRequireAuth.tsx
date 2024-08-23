@@ -8,12 +8,12 @@ export const UnRequireAuth = ({children}: {children: JSX.Element}) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (auth.user) {
-			navigate("/home");
+		if (auth.userDTO) {
+			navigate("/");
 		}
-	}, [auth.user, navigate]);
+	}, [auth.userDTO, navigate]);
 
-	if (auth.user) {
+	if (auth.userDTO) {
 		return ;
 	}
 

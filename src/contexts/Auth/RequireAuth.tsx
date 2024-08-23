@@ -8,12 +8,12 @@ export const RequireAuth = ({children}: {children: JSX.Element}) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!auth.user) {
+		if (!auth.userDTO) {
 			navigate("/login");
 		}
-	}, [auth.user, navigate]);
+	}, [auth.userDTO, navigate]);
 
-	if (!auth.user) {
+	if (!auth.userDTO) {
 		return ;
 	}
 

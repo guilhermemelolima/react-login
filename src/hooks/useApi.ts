@@ -1,29 +1,26 @@
 import axios from 'axios';
+import { UserDTO } from '../types/UserDTO';
 
 const api = axios.create({
-	baseURL: import.meta.env.REACT_APP_URL_API
+	baseURL: '/auth'
   });
 
 export const useApi = () => ({
 	validateToken: async (token: string) => {
-		return {
-			user: { id: 3, name: 'José', email: 'jose@gmail.com'}
-		}
-		// const response = await api.post('/validate-token', {token});
-		// return response.data;
-	},
+		const response = await api.post('/user/validate-token', token);
+		return response.data;
+	  },
 	signin: async (email: string, password: string) => {
-		return {
-			user: { id: 3, name: 'José', email: 'jose@gmail.com'},
-			token: '123456789'
-		}
-		//const response = await api.post('/signin', {email, password});
-		//return response.data;
+		const response = await api.post('/user/login', {email, password});
+		return response.data;
 	},
-	logout: async () => {
-		return {status: true}
-		// const response = await api.post('/logout');
-		// return response.data;
-
+	register: async (userDTO: UserDTO) =>{
+		try{
+			console.log(userDTO)
+			const response = await api.post('/user/register', userDTO)
+			return response.data;
+		}catch{
+			return false
+		}
 	}
 });
