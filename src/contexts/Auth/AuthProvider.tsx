@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import { AuthContext } from "./AuthContext"
 import { UserDTO } from "../../types/UserDTO"
 import { useApi } from "../../hooks/useApi";
@@ -8,24 +8,23 @@ export const AuthProvider = ({children} : {children: JSX.Element}) => {
 	const [userDTO, setUserDTO] = useState<UserDTO | null>(null);
 	const api = useApi();
 
-	const signout = useCallback(() => {
+	const signout = () => {
 		setUserDTO(null);
 		setToken('');
-	  }, []);
+	  }
 
 	useEffect(()=>{
 		const validateToken = async () => {
 			const storageData = localStorage.getItem('authToken');
 			if(storageData){
 				const data = await api.validateToken(storageData);
-				if(data.UserDTO){
-					setUserDTO(data.UserDTO)
-					console.log(localStorage.getItem('authToken'))
+				if(data){
+					setUserDTO(data)
 				}
 			}
 		}
 		validateToken()
-	},[api, signout])
+	},[])
 
 	const signin = async (email: string, password: string) => {
 		const data = await api.signin(email, password);

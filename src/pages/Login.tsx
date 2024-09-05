@@ -1,13 +1,13 @@
-import { ChangeEvent, useContext, useState } from "react"
+import { ChangeEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const Login =() =>{
+export const Login = () => {
 	const auth = useContext(AuthContext);
-	const navigate = useNavigate()
-
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
 
 	const handleEmailInput = (event: ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value);
@@ -17,33 +17,36 @@ export const Login =() =>{
 		setPassword(event.target.value);
 	}
 
-	const handleLogin= async () => {
+	const handleLogin = async () => {
 		if (email && password) {
 			const isLogged = await auth.signin(email, password);
-			if(isLogged){
-				navigate('/')
-			}else{
-				alert('Não deu certo')
+			if (isLogged) {
+				navigate('/');
+			} else {
+				setError('Login failed. Please try again.');
 			}
+		} else {
+			setError('Email and password are required.');
 		}
 	}
 
-	return(
+	return (
 		<div>
-			<h1>Login public</h1>
+			<h1>Login</h1>
 			<input
-				type="text"
+				type="email"
 				value={email}
-				placeholder="Digite o email"
+				placeholder="Email"
 				onChange={handleEmailInput}
-			/> <br />
+			/>
 			<input
 				type="password"
 				value={password}
-				placeholder="Digite a password"
+				placeholder="Password"
 				onChange={handlePasswordInput}
-			/> <br />
-			<button onClick={handleLogin}>Logar</button>
+			/>
+			<button onClick={handleLogin}>Login</button>
+			{error && <p className="alert">{error}</p>}
 		</div>
-	)
+	);
 }
