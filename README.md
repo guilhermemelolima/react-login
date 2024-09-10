@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+# Aplicação de Login
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Aplicação simples de login feita com ReactJS.
 
-Currently, two official plugins are available:
+## 📱 Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto é uma aplicação de login que permite ao usuário cadastrar credencias e as inserir para redalizar login no sistema. A aplicação realiza a altenticação com um [backend](https://github.com/guilhermemelolima/spring-login) feito em Java utilziando o framework [Spring Boot](https://spring.io/projects/spring-boot) e o [JSON Web Token](https://jwt.io/).
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [ReactJS + Vite](https://vitejs.dev/)
+- [React Router](https://reactrouter.com/) para navegação entre as páginas
+- [Axios](https://axios-http.com/) para fazer requisições HTTP
+- [React Icons](https://react-icons.github.io/react-icons/) para utilizar ícones em React.
 
-- Configure the top-level `parserOptions` property like this:
+## 💻 Estrutura do Projeto
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Abaixo está a estrutura básica do projeto, com uma breve descrição de cada diretório e arquivo:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+├── src/
+│   ├── context/auth/ # Contém o contexto de autenticação.
+│   ├── hooks/        # Hook personalizado para lidar com a comunição com a API.
+│   ├── pages/        # Páginas principais da aplicação.
+│   ├── types/        # Definições de tipos TypeScript.
+│   ├── main.tsx      # Ponto de entrada da aplicação.
+│   └── App.tsx       # Componente raiz.
+├── package.json      # Dependências e scripts do projeto.
+└── README.md         # Documentação do projeto.
 ```
